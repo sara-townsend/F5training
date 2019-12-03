@@ -5,8 +5,22 @@
   gather_facts: no
 
   vars:
+    uri_method: POST
+    bigip_addr: "3.10.177.168"
 
   vars_files:
-    
+    ./creds.yaml
+
   tasks:
+    - name: Create a JIRA issue
+      uri:
+       url: https://{{bigip_addr}}/mgmt/shared/appsvcs/declare
+       validate_certs: False
+       user: "{{ user }}"
+       password: "{{ password}}"
+       method: POST
+       body: "{{ lookup('file','as3playbook.json') }}"
+       force_basic_auth: yes
+       status_code: 200
+       body_format: json
 ...

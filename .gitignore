@@ -1,5 +1,5 @@
 # not to include creds
-**creds
+*creds*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
